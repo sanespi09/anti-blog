@@ -1,0 +1,37 @@
+.title-animate {
+    animation: floatShow 1s ease-in-out forwards;
+}
+
+.pop-to-center {
+    z-index: 20;
+    transform-origin: top left;
+    /* animation: popToCenter 800ms ease-in-out forwards; */
+}
+
+@keyframes floatShow {
+    from {
+        opacity: 0;
+        transform: translateY(100px) translateX(-50px);
+    }
+    
+    60% {
+        opacity: 1;
+        transform: translateY(-10px) translateX(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+
+    }
+}
+
+@keyframes popToCenter {
+    from {
+        transform: scale(0.01) translate(0 ,0);
+    }
+
+    to {
+        transform: scale(1) translate(calc(-800px), 200px);
+    }
+}

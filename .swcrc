@@ -1,0 +1,22 @@
+{
+    "jsc": {
+        "transform": {
+            "react": {
+                "pragma": "h",
+                "pragmaFrag": "Fragment"
+            }
+        },
+        "parser": {
+            "syntax": "typescript",
+            "jsx": true
+        }
+    },
+    "module": {
+        "type": "es6"
+    },
+    "env": {
+        "targets": {
+            "node": 14
+        }
+    }
+}

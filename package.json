@@ -1,0 +1,99 @@
+{
+    "name": "anti-blog",
+    "version": "0.0.1",
+    "type":"module",
+    "main": "./dist/server/index.js",
+    "description": "Anti's Personal Blog",
+    "targets": {
+        "main": false
+    },
+    "scripts": {
+        "lint": "eslint . --ext .ts",
+        "lint:fix": "eslint . --ext .ts --fix",
+        "test": "NODE_ENV=test ./node_modules/.bin/mocha --watch --reporter=spec",
+        "test:ci": "NODE_ENV=test ./node_modules/.bin/mocha --timeout=10000 --reporter=spec --check-leaks",
+        "coverage": "./node_modules/.bin/nyc --reporter=text-summary npm run test:ci",
+        "coverage:verbose": "./node_modules/.bin/nyc --reporter=html --reporter=text npm run test:ci",
+        "build": "./node_modules/.bin/tsc -p .",
+        "build:server": "swc ./server --copy-files -d ./dist/server & swc ./client --copy-files -d ./dist/client",
+        "build:client": "parcel build --no-cache ./client/index.html --dist-dir ./dist/client/assets",
+        "prestart": "rm -rf ./dist & npm run build:server & npm run build:client",
+        "start": "node -r dotenv/config --experimental-specifier-resolution=node --trace-warnings ./dist/server/index.js",
+        "dev:compose": "COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 BUILDKIT_PROGRESS=plain docker-compose up --build ",
+        "dev:compose:force": "docker container prune -f && COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 BUILDKIT_PROGRESS=plain docker-compose up --build",
+        "dev:server": "nodemon",
+        "dev": "parcel ./client/index.html",
+        "prepare": "husky install"
+    },
+    "importSort": {
+        ".js, .jsx, .ts, .tsx": {
+            "style": "module",
+            "parser": "typescript"
+        }
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "alias": {
+        "react": "preact/compat",
+        "react-dom/test-utils": "preact/test-utils",
+        "react-dom": "preact/compat",
+        "react/jsx-runtime": "preact/jsx-runtime"
+    },
+    "devDependencies": {
+        "@babel/plugin-transform-react-jsx": "^7.18.10",
+        "@commitlint/cli": "^17.0.3",
+        "@commitlint/config-conventional": "^17.0.3",
+        "@istanbuljs/nyc-config-typescript": "^1.0.1",
+        "@swc/cli": "^0.1.57",
+        "@swc/core": "^1.2.241",
+        "@tailwindcss/typography": "^0.5.6",
+        "@types/cors": "^2.8.8",
+        "@types/express": "^4.17.13",
+        "@types/morgan": "^1.9.3",
+        "@types/node-fetch": "^2.5.7",
+        "@typescript-eslint/eslint-plugin": "^4.9.0",
+        "@typescript-eslint/parser": "^4.9.0",
+        "cz-conventional-changelog": "^3.3.0",
+        "dotenv": "^10.0.0",
+        "eslint": "^7.14.0",
+        "eslint-config-prettier": "^6.15.0",
+        "eslint-plugin-mocha": "^9.0.0",
+        "eslint-plugin-prettier": "^3.1.4",
+        "eslint-plugin-promise": "^4.2.1",
+        "husky": "^8.0.1",
+        "lint-staged": "^10.5.2",
+        "nodemon": "^2.0.7",
+        "nyc": "^15.1.0",
+        "organize-imports-cli": "^0.8.0",
+        "parcel": "^2.7.0",
+        "parse-md": "^2.0.5",
+        "prettier": "^2.2.1",
+        "process": "^0.11.10",
+        "tailwindcss": "^3.1.8",
+        "vite": "^3.0.9"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "esbuild": "^0.15.5",
+        "express": "^4.17.1",
+        "morgan": "^1.10.0",
+        "node-fetch": "^2.6.1",
+        "postcss": "^8.4.16",
+        "preact": "^10.10.6",
+        "preact-render-to-string": "^5.2.2",
+        "react": "npm:@preact/compat",
+        "react-dom": "npm:@preact/compat",
+        "react-markdown": "^6.0.0",
+        "rehype-raw": "^6.1.1",
+        "save-dev": "^0.0.1-security",
+        "ts-node": "^10.3.0",
+        "typescript": "^4.2.4",
+        "wouter-preact": "^2.8.0-alpha.2"
+    }
+}

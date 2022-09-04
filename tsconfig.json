@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "jsxFactory": "h",
+        "jsxFragmentFactory": "Fragment",
+        "module": "node16",
+        "esModuleInterop": true,
+        "target": "es2019",
+        "noImplicitAny": true,
+        "moduleResolution": "Node",
+        "sourceMap": true,
+        "outDir": "dist/src",
+        "baseUrl": "server",
+        "resolveJsonModule": true,
+        "allowJs": true,
+        "paths": {
+            "*": ["node_modules/*"]
+        },
+        "typeRoots": ["@types", "node_modules/@types"]
+    },
+    "include": ["server/**/*", "client/**/*", "./"],
+    "exclude": ["node_modules", "dist"]
+}

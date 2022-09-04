@@ -1,0 +1,14 @@
+@import './pages/Home/home.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Fira Mono', monospace;;
+    font-weight: normal;
+    font-style: normal;
+}
+
+a {
+    text-decoration-line: none;
+}
